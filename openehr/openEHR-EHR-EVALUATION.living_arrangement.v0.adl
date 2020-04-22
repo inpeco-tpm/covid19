@@ -1,0 +1,263 @@
+archetype (adl_version=1.4; uid=7badddf7-2954-4f05-9a4b-73219ee1bdf6)
+	openEHR-EHR-EVALUATION.living_arrangement.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["it"] = <
+			language = <[ISO_639-1::it]>
+			author = <
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2018-05-29">
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Atomica Informatics">
+		["email"] = <"heather.leslie@atomicainformatics.com">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"John Tore Valand, Helse Bergen, Norway","Vebjørn Arntzen, Oslo University Hospital, Norway","Silje Ljosland Bakke, Nasjonal IKT HF, Norway","Nyree Taylor, Ocean Informatics, Australia">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the circumstances about how an individual lives alone or with others.">
+			keywords = <"alone","solo","family","friends","others","household">
+			copyright = <"© openEHR Foundation">
+			use = <"Use to record the circumstances about how an individual lives alone or with others. 
+
+The intent of this archetype is to provide a sense of the level of day-to-day support, both physically and emotionally, that may be available to an individual in their 'home' setting.
+
+The concepts around housing, accommodation and living arrangements are complex and often potentially overlapping. Within this archetype, the intent of the concept of 'household' is to capture information about the group of people (one or more) who live in the same dwelling and share meals or living accommodation. A single dwelling may be considered to contain multiple households if either meals or living space are not shared. In this context households can include varieties of blended families, share housing, group homes, boarding houses, and a single room occupancy.
+
+This archetype has been designed to be used within the EVALUATION.housing_summary archetype, but may be used within any other appropriate ENTRY or CLUSTER archetype related to recording social context.">
+			misuse = <"Not to be used to record details about the physical structure in which an individual lives - use CLUSTER.dwelling for this purpose.
+
+Not to be used to record details about the setting in which an individual usually resides - use CLUSTER.accommodation for this purpose.">
+		>
+		["it"] = <
+			language = <[ISO_639-1::it]>
+			purpose = <"Registrare le circostanze di come un individuo vive da solo o con gli altri.">
+			keywords = <"da solo","assolo","famiglia","amici","altri","famiglia">
+			copyright = <"© openEHR Foundation">
+			use = <"Utilizzare per registrare le circostanze di come un individuo vive da solo o con gli altri. 
+
+L'intento di questo archetipo è quello di fornire un senso del livello di sostegno quotidiano, sia fisico che emotivo, che può essere disponibile per un individuo nel suo ambiente \"domestico\".
+
+I concetti relativi all'alloggio, alla sistemazione e all'organizzazione della vita sono complessi e spesso potenzialmente sovrapposti. All'interno di questo archetipo, l'intento del concetto di \"casa\" è quello di catturare informazioni sul gruppo di persone (una o più) che vivono nella stessa abitazione e condividono i pasti o l'alloggio. Si può considerare che una singola abitazione contenga più famiglie se non si condividono i pasti o lo spazio abitativo. In questo contesto le famiglie possono includere varietà di famiglie miste, abitazioni condivise, case collettive, pensioni e un'occupazione di una sola stanza.
+
+Questo archetipo è stato progettato per essere utilizzato all'interno dell'archetipo VALUTAZIONE.housing_summary, ma può essere utilizzato all'interno di qualsiasi altro archetipo ENTRY o CLUSTER appropriato relativo alla registrazione del contesto sociale.">
+			misuse = <"Da non utilizzare per registrare i dettagli della struttura fisica in cui vive un individuo - utilizzare CLUSTER.dwelling per questo scopo.
+
+Da non utilizzare per registrare i dettagli sull'ambiente in cui risiede abitualmente un individuo - utilizzare CLUSTER.dwelling per questo scopo.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Tratto da: Household, Draft Archetype [Internet]. Australian Digital Health Agency, Australian Digital Health Agency Clinical Knowledge Manager. Non più disponibile.
+
+National Housing and Homelessness Data Dictionary [Internet]. Canberra, Australia: Australian Institute of Health and Welfare (AIHW); 2013 [citato il 30 maggio 2018]. Versione 1. N. cat. HOU 269. Disponibile presso: https://www.aihw.gov.au/getmedia/a47d4c86-a8aa-4f00-a889-42edea09cc2f/17841.pdf">
+		["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"2cb565eb67c9f1d61818d2351df46ac3">
+		["build_uid"] = <"723aab03-8390-4c37-b0e7-fcf8621ff66b">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Living arrangement
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Description
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Living arrangement
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Household composition
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- Household description
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Number of household members
+						value matches {
+							DV_COUNT matches {*}
+						}
+					}
+					allow_archetype CLUSTER[at0008] occurrences matches {0..*} matches {    -- Additional details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {    -- Pets
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0010] occurrences matches {0..1} matches {    -- Comment
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0002] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0012] occurrences matches {0..1} matches {    -- Last updated
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					allow_archetype CLUSTER[at0011] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Living arrangement">
+					description = <"The circumstances about an individual living alone or with others.">
+					comment = <"This information will provide a sense of the level of support, both physically and emotionally, to which an individual may have access.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Description">
+					description = <"Narrative description about the living arrangements.">
+				>
+				["at0004"] = <
+					text = <"Living arrangement">
+					description = <"Single word or phrase that describes if an individual usually resides alone or with others.">
+					comment = <"Coding of the living arrangement with a terminology is preferred, where possible. The value sets for this data element are likely to vary between jurisdictions - it is anticipated that they will usually be set within a use-case specific template. For example: 'lives alone'; 'lives with family'; or 'lives with others'.">
+				>
+				["at0005"] = <
+					text = <"Household composition">
+					description = <"Single word or phrase that describes the relationship between people who reside together.">
+					comment = <"Coding of the household composition with a terminology is preferred, where possible. For example: single; sole parent with children aged less than 16 years; couple; couple with children aged less than 16 years; family; family with other non-related members present; or group of unrelated adults.">
+				>
+				["at0006"] = <
+					text = <"Household description">
+					description = <"Narrative description about the relationship between people who reside together.">
+				>
+				["at0007"] = <
+					text = <"Number of household members">
+					description = <"The number of individuals who are in the household.">
+				>
+				["at0008"] = <
+					text = <"Additional details">
+					description = <"Further details about the living arrangement.">
+					comment = <"This SLOT may be used to nest additional archetypes describing additional details about living arrangements that may be local to a jurisdiction.">
+				>
+				["at0009"] = <
+					text = <"Pets">
+					description = <"Narrative description about the pets who reside with an individual.">
+				>
+				["at0010"] = <
+					text = <"Comment">
+					description = <"Additional narrative about the living arrangement not captured in other fields.">
+				>
+				["at0011"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0012"] = <
+					text = <"Last updated">
+					description = <"The date this summary was last updated.">
+				>
+			>
+		>
+		["it"] = <
+			items = <
+				["at0000"] = <
+					text = <"Disposizione abitativa">
+					description = <"Le circostanze di un individuo che vive da solo o con altri.">
+					comment = <"Queste informazioni forniranno un'idea del livello di supporto, sia fisico che emotivo, a cui un individuo può avere accesso. ">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Descrizione">
+					description = <"Descrizione narrativa della sistemazione abitativa.">
+				>
+				["at0004"] = <
+					text = <"Disposizione abitativa">
+					description = <"Singola parola o frase che descrive se un individuo risiede solitamente da solo o con altri.">
+					comment = <"Si preferisce, ove possibile, la codifica della sistemazione abitativa con una terminologia. I set di valori per questo elemento di dati possono variare da una giurisdizione all'altra - si prevede che saranno di solito impostati all'interno di un modello specifico per il caso d'uso. Ad esempio: \"vive da solo\", \"vive con la famiglia\" o \"vive con altri\".">
+				>
+				["at0005"] = <
+					text = <"Composizione della casa">
+					description = <"Singola parola o frase che descrive il rapporto tra le persone che risiedono insieme.">
+					comment = <"Si preferisce, ove possibile, la codifica della composizione della famiglia con una terminologia. Ad esempio: single; genitore unico con figli di età inferiore ai 16 anni; coppia; coppia con figli di età inferiore ai 16 anni; famiglia; famiglia con altri membri non imparentati presenti; o gruppo di adulti non imparentati. ">
+				>
+				["at0006"] = <
+					text = <"Descrizione della casa">
+					description = <"Descrizione narrativa del rapporto tra le persone che risiedono insieme.">
+				>
+				["at0007"] = <
+					text = <"Numero di componenti della famiglia">
+					description = <"Il numero di individui che fanno parte della famiglia.">
+				>
+				["at0008"] = <
+					text = <"Dettagli aggiuntivi">
+					description = <"Altri dettagli sulla sistemazione abitativa.">
+					comment = <"Questo SLOT può essere utilizzato per annidare ulteriori archetipi che descrivono ulteriori dettagli sulla sistemazione abitativa che possono essere locali in una giurisdizione.">
+				>
+				["at0009"] = <
+					text = <"Animali domestici">
+					description = <"Descrizione narrativa degli animali domestici che risiedono con un individuo.">
+				>
+				["at0010"] = <
+					text = <"Commento">
+					description = <"Narrativa aggiuntiva sulla sistemazione abitativa non catturata in altri campi.">
+				>
+				["at0011"] = <
+					text = <"Extension">
+					description = <"Informazioni aggiuntive necessarie per estendere il modello con contenuti locali o per allinearlo ad altri modelli/formalismi di riferimento.">
+					comment = <"Per esempio: requisiti informativi locali; o metadati aggiuntivi per allinearsi a FHIR.">
+				>
+				["at0012"] = <
+					text = <"Ultimo aggiornamento">
+					description = <"La data di questo riepilogo è stata aggiornata per l'ultima volta.">
+				>
+			>
+		>
+	>
